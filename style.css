@@ -174,12 +174,6 @@ section {
     height: 54px;
 }
 
-.coming-soon {
-    display: block;
-    margin-top: 8px;
-    font-size: 13px;
-    color: var(--text-secondary);
-}
 
 /* Account Type Cards */
 .accounts {
@@ -356,9 +350,6 @@ section {
     margin-bottom: 32px;
 }
 
-.cta .coming-soon {
-    margin-top: 8px;
-}
 
 /* Footer */
 footer {
