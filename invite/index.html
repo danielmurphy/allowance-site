@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You've been invited to share an Allowance family</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f7;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px 32px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    .icon { font-size: 56px; margin-bottom: 20px; }
+    h1 { font-size: 22px; font-weight: 700; color: #1c1c1e; margin-bottom: 12px; }
+    p  { font-size: 15px; color: #6e6e73; line-height: 1.5; margin-bottom: 32px; }
+    .btn-primary {
+      display: block;
+      background: #007AFF;
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 17px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+    .btn-secondary {
+      display: block;
+      color: #007AFF;
+      font-size: 15px;
+      text-decoration: none;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">👨‍👩‍👧‍👦</div>
+    <h1>You've been invited to share an Allowance family</h1>
+    <p id="subtitle">Open the Allowance app to accept the invitation and start managing allowances together.</p>
+    <a id="open-btn" class="btn-primary" href="#">Open in Allowance</a>
+    <a id="store-btn" class="btn-secondary" href="https://apps.apple.com/app/allowance/id6743827609">Get Allowance on the App Store</a>
+  </div>
+
+  <script>
+    // Extract familyId and inviteId from the URL path.
+    // Expected path: /invite/{familyId}/{inviteId}?t={token}
+    var parts = window.location.pathname.replace(/^\/+|\/+$/g, '').split('/');
+    var familyId = parts.length >= 3 ? parts[1] : '';
+    var inviteId  = parts.length >= 3 ? parts[2] : '';
+    var params    = new URLSearchParams(window.location.search);
+    var token     = params.get('t') || '';
+
+    if (familyId && inviteId && token) {
+      // Reconstruct the deep link so the app can handle it if tapped via this page.
+      var deepLink = 'https://getallowance.app/invite/' + familyId + '/' + inviteId + '?t=' + encodeURIComponent(token);
+      document.getElementById('open-btn').href = deepLink;
+    } else {
+      document.getElementById('open-btn').style.display = 'none';
+      document.getElementById('subtitle').textContent =
+        'This invite link looks incomplete. Ask the person who shared it to send a new one.';
+    }
+  </script>
+</body>
+</html>

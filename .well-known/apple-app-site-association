@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "99DT4M6M5Q.com.danielmurphy.Allowance",
+        "paths": ["/invite/*/*"]
+      }
+    ]
+  }
+}
