@@ -21,5 +21,7 @@ Marketing site for the Allowance iOS app, served at https://getallowance.app.
 
 ## Things to watch
 
-- `.gitignore` doesn't exist. Don't commit `.DS_Store` or `.claude/settings.local.json`.
+- `.gitignore` exists at the repo root — keeps `.DS_Store` and `.claude/` out.
+- **`.nojekyll` at the repo root is required** so Pages serves dot-prefixed paths like `.well-known/`. Without it Jekyll filters them and they 404.
+- **`404.html` at the repo root doubles as the invite-landing handler.** GitHub Pages serves a single static file per URL — there's no path-based routing — so `https://getallowance.app/invite/{familyId}/{inviteId}?t=...` returns 404 with `404.html` as the body. The JS in `404.html` detects an invite path and renders the invite UI; otherwise it shows a generic not-found card. Iff you ever change the universal-link URL format, update both `invite/index.html` and the path detector in `404.html`.
 - AASA file changes can take up to 24h for iOS to refresh on installed devices (cached at install time and refreshed lazily). Plan AASA edits accordingly.
