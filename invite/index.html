@@ -68,8 +68,10 @@
     var token     = params.get('t') || '';
 
     if (familyId && inviteId && token) {
-      // Reconstruct the deep link so the app can handle it if tapped via this page.
-      var deepLink = 'https://getallowance.app/invite/' + familyId + '/' + inviteId + '?t=' + encodeURIComponent(token);
+      // Use the app's custom URL scheme here, not the https universal link:
+      // iOS never opens the app for a same-domain link tapped in Safari, so an
+      // https:// href on this page would just reload it.
+      var deepLink = 'allowance://invite/' + familyId + '/' + inviteId + '?t=' + encodeURIComponent(token);
       document.getElementById('open-btn').href = deepLink;
     } else {
       document.getElementById('open-btn').style.display = 'none';
