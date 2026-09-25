@@ -61,17 +61,19 @@
       text-decoration: none;
       padding: 8px;
     }
+    .note { font-size: 13px; color: #8e8e93; margin: 12px 0 0; }
     [hidden] { display: none !important; }
   </style>
 </head>
 <body>
   <div id="join-card" class="card" hidden>
     <div class="icon">👨‍👩‍👧‍👦</div>
-    <h1>Join a family on Allowance</h1>
-    <p id="join-subtitle">Open Allowance and enter this code. A code works once, then stops.</p>
+    <h1 id="title">Join a family on Allowance</h1>
+    <p id="subtitle">Open Allowance and enter this code. A code works once, then stops.</p>
     <code id="code" class="code" hidden></code>
     <a id="open-btn" class="btn-primary" href="#" hidden>Open in Allowance</a>
-    <a class="btn-secondary" href="https://apps.apple.com/app/allowance/id6743827609">Get Allowance on the App Store</a>
+    <a id="store-btn" class="btn-secondary" href="https://apps.apple.com/app/allowance/id6743827609">Get Allowance on the App Store</a>
+    <p id="copy-note" class="note" hidden>New to Allowance? The App Store link copies this code, and the app offers it when it first opens.</p>
   </div>
 
   <div id="notfound-card" class="card" hidden>
@@ -81,35 +83,20 @@
     <a class="btn-primary" href="/">Go to Allowance</a>
   </div>
 
+  <script src="/join/join.js"></script>
   <script>
     // GitHub Pages serves this file for any unmatched URL. Universal links hit
     // /join/{CODE}, which has no real file behind it, so detect that here and
-    // render the join landing inline (same markup as join/index.html). Other
-    // 404s render the generic not-found card.
+    // render the join landing (join/join.js, shared with join/index.html).
+    // Other 404s render the generic not-found card.
     (function () {
       var parts = window.location.pathname.replace(/^\/+|\/+$/g, '').split('/');
-      var isJoinPath = parts[0] === 'join';
-
-      if (!isJoinPath) {
+      if (parts[0] !== 'join') {
         document.getElementById('notfound-card').hidden = false;
         return;
       }
-
       document.getElementById('join-card').hidden = false;
-      var raw = parts.length >= 2 ? parts[1] : '';
-      var code = decodeURIComponent(raw).toUpperCase().replace(/[\s-]/g, '');
-
-      if (/^[A-HJ-NP-Z2-9]{6}$/.test(code)) {
-        document.getElementById('code').textContent = code;
-        document.getElementById('code').hidden = false;
-        // Custom scheme, not https: Safari would just reload a same-domain link.
-        var openBtn = document.getElementById('open-btn');
-        openBtn.href = 'allowance://join/' + code;
-        openBtn.hidden = false;
-      } else {
-        document.getElementById('join-subtitle').textContent =
-          'This code looks incomplete. Ask the grown-up who shared it to send a new one.';
-      }
+      renderJoin();
     })();
   </script>
 </body>

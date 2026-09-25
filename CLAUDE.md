@@ -17,7 +17,7 @@ Marketing site for the Allowance iOS app, served at https://getallowance.app.
 - `index.html`, `privacy.html`, `style.css`, `images/` — marketing pages.
 - `CNAME` — custom domain config (do not delete).
 - `.well-known/apple-app-site-association` — Apple Universal Links manifest. Must be served as JSON with no extension and no redirects. Tied to the iOS app's Team ID + Bundle ID; touch only when those change.
-- `join/index.html` — landing page for `https://getallowance.app/join/{CODE}` family codes (the family-sharing redesign; contract in `../iOS/docs/family-sharing-redesign.md` §1.4). Shows the code from the path in large monospace, offers "Open in Allowance" (`allowance://join/{CODE}`) and an App Store fallback. Codes are 6 chars from `A-HJ-NP-Z2-9`; the page normalises (uppercase, strips spaces and dashes) and shows an "incomplete" message otherwise. Copy uses the app's vocabulary: family, grown-up, kid, code; no pronouns for people.
+- `join/index.html` — landing page for `https://getallowance.app/join/{CODE}` family codes (the family-sharing redesign; contract in `../iOS/docs/family-sharing-redesign.md` §1.4). Shows the code from the path in large monospace, calls the public `previewCode` callable to say who is inviting (or which kid's device a kid code sets up), offers "Open in Allowance" (`allowance://join/{CODE}`) and an App Store link that copies the join URL first, so the app's first-launch Paste banner can offer it back. The logic lives in `join/join.js`, shared with `404.html`. Codes are 6 chars from `A-HJ-NP-Z2-9`; the page normalises (uppercase, strips spaces and dashes) and shows an "incomplete" message otherwise. Copy uses the app's vocabulary: family, grown-up, kid, code; no pronouns for people.
 
 ## Things to watch
 
