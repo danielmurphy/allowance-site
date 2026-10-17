@@ -498,3 +498,13 @@ footer {
     font-size: 17px;
     color: var(--text);
 }
+
+.family-sharing .family-shot {
+    display: block;
+    width: 220px;
+    max-width: 60%;
+    height: auto;
+    margin: 24px auto;
+    border-radius: 28px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
