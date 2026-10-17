@@ -490,3 +490,11 @@ footer {
 .privacy a:hover {
     text-decoration: underline;
 }
+
+/* Family sharing price line */
+.family-sharing .price-line {
+    margin-top: 32px;
+    margin-bottom: 0;
+    font-size: 17px;
+    color: var(--text);
+}
