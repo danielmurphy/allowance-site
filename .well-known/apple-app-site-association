@@ -4,8 +4,16 @@
     "details": [
       {
         "appID": "99DT4M6M5Q.com.danielmurphy.Allowance",
-        "paths": ["/join/*", "/invite/*/*"]
+        "paths": [
+          "/join/*",
+          "/invite/*/*"
+        ]
       }
+    ]
+  },
+  "appclips": {
+    "apps": [
+      "99DT4M6M5Q.com.danielmurphy.Allowance.Clip"
     ]
   }
 }
